@@ -25,12 +25,12 @@ under the License.
   <parent>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-plugins</artifactId>
-    <version>33</version>
-    <relativePath/>
+    <version>34</version>
+    <relativePath />
   </parent>
 
   <artifactId>maven-site-plugin</artifactId>
-  <version>3.8-SNAPSHOT</version>
+  <version>3.9.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
   <name>Apache Maven Site Plugin</name>
@@ -196,11 +196,11 @@ under the License.
 
   <properties>
     <mavenVersion>3.0</mavenVersion>
-    <javaVersion>8</javaVersion>
+    <javaVersion>7</javaVersion>
     <!-- for dependencies -->
-    <doxiaVersion>1.8</doxiaVersion>
-    <doxiaSitetoolsVersion>1.8.1</doxiaSitetoolsVersion>
-    <jettyVersion>9.4.12.v20180830</jettyVersion>
+    <doxiaVersion>1.9.1</doxiaVersion>
+    <doxiaSitetoolsVersion>1.9.2</doxiaSitetoolsVersion>
+    <jettyVersion>9.2.29.v20191105</jettyVersion>
     <plexusVersion>1.5.4</plexusVersion>
     <scmVersion>1.4</scmVersion>
     <wagonVersion>3.3.1</wagonVersion>
@@ -210,6 +210,7 @@ under the License.
     <pmdPluginVersion>3.11.0</pmdPluginVersion>
     <projectInfoReportsPluginVersion>2.7</projectInfoReportsPluginVersion>
     <surefirePluginVersion>2.22.1</surefirePluginVersion>
+    <project.build.outputTimestamp>2020-02-14T20:39:59Z</project.build.outputTimestamp>
   </properties>
 
   <dependencies>
@@ -283,7 +284,7 @@ under the License.
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-archiver</artifactId>
-      <version>3.1.1</version>
+      <version>3.5.0</version>
     </dependency>
 
     <!-- dependencies to annotations -->
@@ -302,7 +303,7 @@ under the License.
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-archiver</artifactId>
-      <version>3.4</version>
+      <version>4.2.1</version>
     </dependency>
 
     <dependency>
@@ -319,7 +320,7 @@ under the License.
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>3.0.24</version>
+      <version>3.3.0</version>
     </dependency>
 
     <dependency>
@@ -337,7 +338,17 @@ under the License.
 
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-core</artifactId>
+      <version>${doxiaVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-module-xhtml</artifactId>
+      <version>${doxiaVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-module-xhtml5</artifactId>
       <version>${doxiaVersion}</version>
     </dependency>
     <dependency>
@@ -360,6 +371,24 @@ under the License.
     <dependency>
       <groupId>org.apache.maven.doxia</groupId>
       <artifactId>doxia-module-markdown</artifactId>
+      <version>${doxiaVersion}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-module-confluence</artifactId>
+      <version>${doxiaVersion}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-module-docbook-simple</artifactId>
+      <version>${doxiaVersion}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.doxia</groupId>
+      <artifactId>doxia-module-twiki</artifactId>
       <version>${doxiaVersion}</version>
       <scope>runtime</scope>
     </dependency>
@@ -507,7 +536,6 @@ under the License.
       <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
-        <version>1.6</version>
         <executions>
           <execution>
             <goals>
@@ -520,7 +548,7 @@ under the License.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>1.4</version>
+        <version>3.2.2</version><!-- TODO remove when upgrading parent to 35 -->
         <executions>
           <execution>
             <phase>package</phase>
@@ -614,7 +642,7 @@ under the License.
                 <mockRepo>
                   <source>src/it/mrm/repository</source>
                 </mockRepo>
-                <proxyRepo/>
+                <proxyRepo />
               </repositories>
             </configuration>
           </plugin>

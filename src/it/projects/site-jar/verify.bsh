@@ -47,9 +47,19 @@ try
 
     JarFile jar = new JarFile( siteJar );
     Enumeration jarEntries = jar.entries();
+    long timestamp = -1;
     while ( jarEntries.hasMoreElements() )
     {
         JarEntry entry = (JarEntry) jarEntries.nextElement();
+        if ( timestamp == -1 )
+        {
+            timestamp = entry.getTime(); // reproducible timestamp in jar file cause local timestamp depending on timezone
+        }
+        if ( entry.getTime() != timestamp )
+        {
+            System.out.println( "wrong entry time for " + entry.getName() + ": " + entry.getTime() + " instead of " + timestamp );
+            return false;
+        }
         if ( !entry.isDirectory() )
         {
             // Only compare files
